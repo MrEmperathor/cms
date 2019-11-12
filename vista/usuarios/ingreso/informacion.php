@@ -16,16 +16,18 @@ if ($result->num_rows > 0) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hoy = date("Y-m-d H:i:s");
-    $sql = 'INSERT INTO  `parqueos` (`id`, `usuario_id`, `horaingreso`, `horasalida`, `duracion`) VALUES (NULL, "'. $_SESSION['ingreso_id'].'", "'. $hoy .'","","")';
+    $sql = 'INSERT INTO  `parqueos` (`id`, `usuario_id`, `horaingreso`, `horasalida`, `duracion`) VALUES (NULL, "'. $_SESSION['ingreso_id'].'", "'. $hoy .'","","") WHERE horasalida = "';
     if ($conexion->query($sql) === TRUE) {
         echo '<script>
               alert("Se a registrado el Ingreso al usuario");
-               window.location="?id=cms=";
+               window.location="?id=cms";
             </script>';
           die();
       } else {
-          echo "Error: " . $sql . "<br>" . $conn->error;
-          echo "Ocurrio un error, por favor vuelve a intentarlo";
+          echo '<script>
+          alert("EL usuario ya tiene bicicleta en el parqueadero");
+           window.location="?id=cms";
+        </script>';
       }
 
 }
@@ -46,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php foreach ($bicicletas as $key => $item){
                                                 echo $key;?>
                     <option value="<?php echo $item['id'] ?>">
-                        <?php echo $item['dato'] ?> (<?php echo $item['color'] ?> disponibles)
+                        bicicleta <?php echo $item['dato'] ?> (<?php echo $item['color'] ?> )
                     </option>
                     <?php  }; ?>
                 </select>

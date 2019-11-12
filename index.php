@@ -36,6 +36,8 @@ include "controlador/app.php";
                   include "vista/usuarios/consulta.php";
                  }elseif($id === 'cms'){
                   include "vista/cms/index.php";
+                 }elseif($id === 'listado'){
+                  include "vista/usuarios/listado/registrados.php";
                  }
                  
                  

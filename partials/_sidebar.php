@@ -79,6 +79,12 @@
       <i class="mdi mdi-medical-bag menu-icon"></i>
     </a>
     </li>
+    <li class="nav-item">
+    <a class="nav-link" href="/cms/?id=listado">
+      <span class="menu-title">Usuarios Registrados</span>  
+      <i class="mdi mdi-medical-bag menu-icon"></i>
+    </a>
+    </li>
     
  
    

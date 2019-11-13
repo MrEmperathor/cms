@@ -50,7 +50,7 @@ $login ='
     if(empty($_SESSION['nombre'])){
         echo $login;
       }else{
-        header('location: /cms');
+        header('location: /cms/?id=cms');
       }
 
 

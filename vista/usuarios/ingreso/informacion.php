@@ -8,15 +8,22 @@ $sql = 'SELECT * FROM `usuario_datos` WHERE usuario_id = "'. $_SESSION['ingreso_
 $result = $conexion->query($sql);
 
 if ($result->num_rows > 0) {
-    $bicicletas = $result->fetch_all(MYSQLI_ASSOC);
+    $bicicletas = $result->fetch_all(MYSQLI_ASSOC);   
 } else {
-    $bicicletas = null;
+   echo '<div class="alert alert-light alert-dismissible fade show" role="alert">
+   <strong>EL USUARIO NO TIENE BICICLETAS!</strong> se recomienda hacer el registro <a href="?id=agregar_datos&usuario='.$_SESSION['ingreso_documento'].'">AQUI</a>.
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>';
 }
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hoy = date("Y-m-d H:i:s");
-    $sql = 'INSERT INTO  `parqueos` (`id`, `usuario_id`, `horaingreso`, `horasalida`, `duracion`) VALUES (NULL, "'. $_SESSION['ingreso_id'].'", "'. $hoy .'","","") WHERE horasalida = "';
+
+
+    $sql = 'INSERT INTO  `parqueos` (`id`, `usuario_id`, `horaingreso`, `horasalida`, `duracion`) VALUES (NULL, "'. $_SESSION['ingreso_id'].'", "'. $hoy .'","","")';
     if ($conexion->query($sql) === TRUE) {
         echo '<script>
               alert("Se a registrado el Ingreso al usuario");

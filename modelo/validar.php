@@ -22,7 +22,7 @@ if($filas>0) {
 	$_SESSION["correo"]= $array["correo"];
 	$_SESSION["cargo"]=  $array['rol'];
 	
-    header("location:../?id=dashboard");
+    header("location:../?id=cms");
 }else{
 		//muestra error de autentificacion
 		header("location:../index.php?error");

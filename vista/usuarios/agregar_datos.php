@@ -88,7 +88,7 @@ $hide = false;
 
 <div class="content-wrapper">
 <div class="col-md-12 text-center p-4">
-    <a class="btn btn-danger" href="index.php">Volver</a>
+    <a class="btn btn-danger" href="?id=actualizar">Volver</a>
 </div>
 
    <div class="row">

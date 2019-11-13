@@ -6,10 +6,23 @@ $datos =false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    
+
+$sql = 'SELECT * FROM usuarios WHERE documento = "'.$_POST["documento"].'"';
+$result = $conexion->query($sql);
+
+if ($result->num_rows > 0) {
     echo '<script>
-			alert("Usuario Registrado Complete Datos Adicionales");
  			window.location="?id=agregar_datos&usuario='.$_POST["documento"].'";
           </script>';
+} else {
+    echo '<div class="alert alert-light alert-dismissible fade show" role="alert">
+    <strong>EL USUARIO NO EXISTE!</strong> Ingrese al modulo de registro.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>';
+}
+   
 
     
 }
@@ -21,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container ">
             <div class="content-wrapper">
                     <div class="col-md-12 text-center p-4">
-                        <a class="btn btn-danger" href="index.php?id=cms">Volver</a>
+                        <a class="btn btn-danger" href="?id=cms">Volver</a>
                     </div>
                     <div class="row">
                     <div class="col-md-12 grid-margin stretch-card">

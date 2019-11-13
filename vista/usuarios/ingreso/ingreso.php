@@ -14,28 +14,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['ingreso_id'] = $usuario[0]["id"];
         $_SESSION['ingreso_documento']= $usuario[0]["documento"];
         echo '<script>
-			alert("Usuario Registrado Complete Datos Adicionales");
  			window.location="?id=ingreso_informacion";
           </script>';
     }else {
-        $usuario = null;
+        echo '<div class="alert alert-light alert-dismissible fade show" role="alert">
+        <strong>EL USUARIO NO EXISTE!</strong> se recomienda hacer el registro por lo tanto no podra parquear.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
     }
 
     
 }
-/*
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-$sql = "INSERT INTO `parqueos` (`id`, `usuario_id`, `usuario_id`, `dato`,  `color`) VALUES ";
-    if ($conexion->query($sql) === TRUE) {
-        echo '<script>
-			alert("Usuario Registrado Complete Datos Adicionales");
- 			window.location="?id=agregar_datos&usuario='.$cliente[0]['documento'] .'";
-          </script>';
-                die();
-    } else {
-        echo "Ocurrio un error, por favor vuelve a intentarlo";
-    }
-}*/
 
 ?>
 

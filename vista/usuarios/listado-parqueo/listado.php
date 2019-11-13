@@ -32,7 +32,11 @@ if ($result->num_rows > 0) {
                         </tr>
                       </thead>
                       <tbody>
-                <?php foreach($enparqueadero as $key => $item){
+                <?php 
+                if($enparqueadero == NULL){
+                  echo 'NO HAY NINGUN USUARIO ACTUALMENTE EN  EL PARQUIADERO';
+                }else{
+                foreach($enparqueadero as $key => $item){
                    
                    if($item["genero"]=="MASCULINO"){
                          $img = 'assets/images/faces-clipart/pic-1.png';
@@ -50,6 +54,7 @@ if ($result->num_rows > 0) {
                           <td>'.$item["horaingreso"].' </td>
                         </tr>';
                         }
+                      }
 
                     ?>
                     </table>

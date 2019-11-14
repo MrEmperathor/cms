@@ -19,26 +19,25 @@ if ($result->num_rows > 0) {
 }
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $hoy = date("Y-m-d H:i:s");
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $hoy = date("Y-m-d H:i:s");
 
 
-    $sql = 'INSERT INTO  `parqueos` (`id`, `usuario_id`, `horaingreso`, `horasalida`, `duracion`) VALUES (NULL, "'. $_SESSION['ingreso_id'].'", "'. $hoy .'","","")';
-    if ($conexion->query($sql) === TRUE) {
-        echo '<script>
-              alert("Se a registrado el Ingreso al usuario");
-               window.location="?id=cms";
-            </script>';
-          die();
-      } else {
-          echo '<script>
-          alert("EL usuario ya tiene bicicleta en el parqueadero");
-           window.location="?id=cms";
-        </script>';
-      }
+            $sql = 'INSERT INTO  `parqueos` (`id`, `usuario_id`, `horaingreso`, `horasalida`, `duracion`) VALUES (NULL, "'. $_SESSION['ingreso_id'].'", "'. $hoy .'","","")';
+            if ($conexion->query($sql) === TRUE) {
+                echo '<script>
+                    alert("Se a registrado el Ingreso al usuario");
+                    window.location="?id=cms";
+                    </script>';
+                die();
+            } else {
+                echo '<script>
+                alert("EL usuario ya tiene bicicleta en el parqueadero");
+                window.location="?id=cms";
+                </script>';
+            }
 
-}
-
+        }
 
 
 ?>

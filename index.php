@@ -38,10 +38,13 @@ include "controlador/app.php";
                   include "vista/cms/index.php";
                  }elseif($id === 'listado'){
                   include "vista/usuarios/listado/registrados.php";
+                 }elseif($id === 'listado-parqueos'){
+                  include "vista/usuarios/listado/parqueados.php";
                  }
                  
-                 
+                   
         echo '</div> </div></div>';
+                 
         include "vista/footer.php";        
     }else{
         header('location: /cms/login.php');

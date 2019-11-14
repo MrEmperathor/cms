@@ -3,8 +3,9 @@
 include "controlador/app.php";
 require('modelo/conexion.php');
 	
-	
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
+$desde1	 = "00/00/0000";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
             $desde1 =  str_replace ( '/' , '-' , $_POST["desde"] );
             $hasta1 =  str_replace ( '/' , '-' , $_POST["hasta"] );
             $desde = explode("-", $desde1);

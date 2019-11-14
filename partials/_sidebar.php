@@ -89,7 +89,7 @@
       </a>
       <div class="collapse" id="general-pages2">
         <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="/cms/?id=listado-parqueos"> Listado de Parqueados </a></li>
+            <li class="nav-item"> <a class="nav-link" href="/cms/?id=reporte"> Listado de Parqueados </a></li>
             
         </ul>
       </div>

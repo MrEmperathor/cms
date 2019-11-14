@@ -3,13 +3,28 @@
 include "controlador/app.php";
 require('modelo/conexion.php');
 	
-	$sql = 'SELECT * FROM parqueos LEFT JOIN usuarios ON parqueos.usuario_id = usuarios.id WHERE duracion <> ""  ';
+	
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
+            $desde1 =  str_replace ( '/' , '-' , $_POST["desde"] );
+            $hasta1 =  str_replace ( '/' , '-' , $_POST["hasta"] );
+            $desde = explode("-", $desde1);
+            $hasta = explode("-", $hasta1);
+            $desdesql =   $desde[2].'-'.$desde[1].'-'.$desde[0];
+            $hastasql =   $hasta[2].'-'.$hasta[1].'-'.$hasta[0];
+
+   $sql = 'SELECT * FROM parqueos LEFT JOIN usuarios ON parqueos.usuario_id = usuarios.id WHERE horaingreso BETWEEN "'.$desdesql.' 00:00:00" AND "'.$hastasql.' 23:59:59" AND duracion <> ""';
 	$result = $conexion->query($sql);
 
 	if ($result->num_rows > 0) {
-			$datos = $result->fetch_all(MYSQLI_ASSOC);
+            $datos = $result->fetch_all(MYSQLI_ASSOC);
 	} else {
-			$datos = null;
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>NO SE REGISTRO USUARIOS PARA ESTAS FECHAS!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
+         $datos = null;
 	}
 
 	function convertirTiempo($data){
@@ -19,12 +34,32 @@ require('modelo/conexion.php');
 		$diff    = $zero->diff($offset);
 		return $diff->format('%a Días, %h Horas, %i Minutos');
 	}
-
+    }
 	
 ?>
- 
+
+
 <div class="container">
-		<h2>Usuarios Que han utilizado el parqueadero hasta (<?php echo date("Y-m-d"); ?>)</h2>
+        <h3>Usuarios Que han utilizado el parqueadero hasta (<?php echo date("Y-m-d"); ?>)</h3>
+        <form class="form-inline" method="post">
+            <h5>Desde: </h5>
+        <input id="datepicker" name="desde" width="276" value="<?php echo $desde1 ?>" readonly />
+            <script>
+                $('#datepicker').datepicker({
+                    uiLibrary: 'bootstrap4'
+                });
+            </script>
+
+        <h5>Hasta: </h5>
+        <input  id="datepicker2" name="hasta" width="276" value="<?php echo $hasta1 ?>" readonly/>
+            <script>
+                $('#datepicker2').datepicker({
+                    uiLibrary: 'bootstrap4'
+                });
+            </script>
+        <button type="submit" id="boton-cargar" class="ml -3 btn btn-primary btn-sm" style="margin-left: 10px;">GENERAR REPORTE</button>
+        </form>
+
 				<div class="form-group mt-4"> 
 				<h5>Usuarios por página</h5>
 			 		<select class  ="form-control" name="state" id="maxRows">
@@ -47,7 +82,9 @@ require('modelo/conexion.php');
 					<th>Fecha de Salida</th>
 					<th>Duración</th>
 				</tr>
-				<?php
+                <?php
+                if($datos!=NULL){
+                
 					foreach($datos as $key => $item){					
 						echo '
 							<tr>
@@ -58,7 +95,8 @@ require('modelo/conexion.php');
 								<td>'.$item['horasalida'].'</td>
 								<td>'.convertirTiempo($item['duracion']).'</td>
 							</tr>';
-					}
+                    }
+                }
 				?>
 			</table>
 			<div class='pagination-container' >
@@ -212,4 +250,22 @@ $(function(){
 
 //  Developed By Yasser Mas 
 // yasser.mas2@gmail.com
+
+
+
+
+
+$(document).ready(function(){    
+    $('#boton-guardar').click(function(){        
+        /*Captura de datos escrito en los inputs*/        
+        var nom = document.getElementById("datepicker2").value;
+        var apel = document.getElementById("datepicker").value;
+        /*Guardando los datos en el LocalStorage*/
+        localStorage.setItem("Nombre", nom);
+        localStorage.setItem("Apellido", apel);
+        /*Limpiando los campos o inputs*/
+        document.getElementById("datepicker2").value = "";
+        document.getElementById("datepicker").value = "";
+    });   
+});
 </script>

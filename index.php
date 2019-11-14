@@ -40,6 +40,8 @@ include "controlador/app.php";
                   include "vista/usuarios/listado/registrados.php";
                  }elseif($id === 'listado-parqueos'){
                   include "vista/usuarios/listado/parqueados.php";
+                 }elseif($id === 'reporte'){
+                  include "vista/reporte/reporte.php";
                  }
                  
                    

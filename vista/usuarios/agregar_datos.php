@@ -50,7 +50,7 @@ if ($result->num_rows > 0) {
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    echo $_POST["tipo"];
+ 
     if($_POST["tipo"]==4){
         $color=TRUE;
     }

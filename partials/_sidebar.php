@@ -23,30 +23,48 @@
     </li>
     <?php if($_SESSION["cargo"] === 'administrador'){
   echo '
-     <li class="nav-item">
-      <a class="nav-link" href="/cms/?id=registro_admin">
-        <span class="menu-title">Registrar Administradores</span>
-        <i class="mdi mdi-contacts menu-icon"></i>
+        <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
+            <span class="menu-title">Usuarios</span>
+            <i class="menu-arrow"></i>
+            <i class="mdi mdi-account menu-icon"></i>
+        </a>
+        <div class="collapse" id="general-pages">
+          <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/cms/?id=registro_usuario"> Registro </a></li>
+              <li class="nav-item"> <a class="nav-link" href="/cms/?id=actualizar"> Actualizar Datos </a></li>
+              <li class="nav-item"> <a class="nav-link" href="/cms/?id=listado"> Listado General</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#general-pages1" aria-expanded="false" aria-controls="general-pages1">
+        <span class="menu-title">Parqueadero</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-bike menu-icon"></i>
       </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/cms/?id=registro_vigilante">
-        <span class="menu-title">Registrar Vigilantes</span>
-        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+      <div class="collapse" id="general-pages1">
+      <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/cms/?id=listado_parqueado"> Usuarios en Parqueadero</a></li>
+      </ul>
+      </div>
+      </li>
+
+      <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#general-pages2" aria-expanded="false" aria-controls="general-pages2">
+        <span class="menu-title">Reportes</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-library menu-icon"></i>
       </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/cms/?id=reportes">
-        <span class="menu-title">Reportes Diarios</span>
-        <i class="mdi mdi-chart-bar menu-icon"></i>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/cms/?id=novedades">
-        <span class="menu-title">Novedades</span>
-        <i class="mdi mdi-chart-bar menu-icon"></i>
-      </a>  
-    </li>
+      <div class="collapse" id="general-pages2">
+      <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/cms/?id=reporte"> Listado de Parqueados </a></li>
+          
+      </ul>
+      </div>
+      </li>
+
     '; }
     if($_SESSION["cargo"]==='vigilante'){ 
       echo '

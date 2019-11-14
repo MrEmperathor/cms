@@ -253,8 +253,6 @@ $(function(){
 
 
 
-
-
 $(document).ready(function(){    
     $('#boton-guardar').click(function(){        
         /*Captura de datos escrito en los inputs*/        

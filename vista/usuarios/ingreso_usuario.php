@@ -2,8 +2,18 @@
   require('modelo/conexion.php');
 $show = TRUE;
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+     $_POST['rol'];
+    if($_POST['rol']==1){
+      $usuario = "usuario";
 
-    $sql = "INSERT INTO `usuarios` (`id`, `rol`, `documento`, `nombre`, `nombre2`, `apellido`, `apellido2`, `contrasena`, `genero`, `correo`) VALUES (NULL, 'usuario', '". $_POST["documento"] ."', '".$_POST["primernombre"]."', '".$_POST["segundonombre"]."', '".$_POST["primerapellido"]."', '".$_POST["segundoapellido"]."', '', '".$_POST["genero"]."', '".$_POST["correo"]."')";
+    }elseif($_POST['rol']==2){
+      $usuario = "vigilante";
+    }
+    elseif($_POST['rol']==3){
+      $usuario = "administrador";
+    }
+     
+     $sql = "INSERT INTO `usuarios` (`id`, `rol`, `documento`, `nombre`, `nombre2`, `apellido`, `apellido2`, `contrasena`, `genero`, `fecha_registro`) VALUES (NULL, '". $usuario ."', '". $_POST["documento"] ."', '".$_POST["primernombre"]."', '".$_POST["segundonombre"]."', '".$_POST["primerapellido"]."', '".$_POST["segundoapellido"]."', '". $_POST["contrasena"] ."', '".$_POST["genero"]."', '". date("Y-m-d") ."')";
    
     if ($conexion->query($sql) === TRUE) {
       echo '<script>
@@ -11,9 +21,9 @@ $show = TRUE;
  			window.location="?id=agregar_datos&usuario='.$_POST["documento"].'";
           </script>';
         die();
-    } else {
-       
-        echo '<div class="alert alert-light alert-dismissible fade show" role="alert">
+    } else { 
+      printf("Errormessage: %s\n", $conexion->error);
+      echo '<div class="alert alert-light alert-dismissible fade show" role="alert">
         <strong>USUARIO YA EXISTENTE!</strong> valide en el modulo actualizar datos para poder ver mas información.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -31,7 +41,29 @@ $show = TRUE;
         <h4 class="card-title">Registro usuario</h4>
         <p class="card-description">Agrega Información Basica</p>
         <form method="post" class="form-register">
-        <div class="form-group">
+
+        <?php 
+        if($_SESSION["cargo"] === 'administrador'){
+          echo '<div class="form-group">
+                 <label>Tipo de Usuario </label>
+                 <select class="form-control" name="rol">
+                  <option value="1">Usuario</option>
+                  <option value="2">Vigilante</option>
+                  <option value="3">Administrador</option>
+
+                </select>
+                  </div>
+                  <div class="form-group">
+                  <label>Contraseña </label>
+                  <input type="number" class="form-control" name="contrasena" placeholder="Contraseña" require>
+                </div> 
+                  
+                  
+                  ';
+        }
+        
+        ?>
+          <div class="form-group">
             <label>Documento </label>
             <input type="number" class="form-control" name="documento" placeholder="Cedula" require>
           </div>
@@ -58,10 +90,7 @@ $show = TRUE;
               <option>Femenino</option>
             </select>
           </div>
-          <div class="form-group">
-            <label>Dirección de Correo</label>
-            <input type="email" class="form-control" name="correo" placeholder="Email">
-          </div>
+         
 
 
           <button type="submit" class="btn btn-gradient-primary mr-2">Registro</button>

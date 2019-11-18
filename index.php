@@ -43,7 +43,7 @@ include "controlador/app.php";
                  }elseif($id === 'reporte'){
                   include "vista/reporte/reporte.php";
                  }
-                 
+                  
                    
         echo '</div> </div></div>';
                  

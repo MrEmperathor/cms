@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-11-2019 a las 08:02:45
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Tiempo de generación: 15-11-2019 a las 00:58:47
+-- Versión del servidor: 10.1.28-MariaDB
+-- Versión de PHP: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -81,19 +81,21 @@ CREATE TABLE `usuarios` (
   `apellido2` varchar(30) NOT NULL,
   `contrasena` varchar(30) NOT NULL,
   `genero` enum('MASCULINO','FEMENINO','OTRO') NOT NULL,
-  `correo` varchar(100) NOT NULL
+  `fecha_registro` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `rol`, `documento`, `nombre`, `nombre2`, `apellido`, `apellido2`, `contrasena`, `genero`, `correo`) VALUES
+INSERT INTO `usuarios` (`id`, `rol`, `documento`, `nombre`, `nombre2`, `apellido`, `apellido2`, `contrasena`, `genero`, `fecha_registro`) VALUES
 (1, 'administrador', 123, 'Andres', 'Fabian', 'Aya', 'Cifuentes', 'doc123', 'MASCULINO', ''),
 (3, 'vigilante', 123456789, 'Jhon', 'Jairo', 'Castellanos', 'Parra', '123456789', 'MASCULINO', ''),
-(4, 'usuario', 786543, 'karen', 'Julieth', 'Echeverry', 'Medina', '', 'FEMENINO', 'pruebas2@localhost'),
-(31, 'usuario', 12343, 'pruebas', 'pruebas', 'pruebas', 'askdj', '', 'MASCULINO', 'pelislatino24online@gmail.com'),
-(32, 'usuario', 20484652, 'maria', 'margarita', 'cifuentes', 'lopez', '', 'FEMENINO', 'preubas@gmail.com');
+(4, 'usuario', 786543, 'karen', 'Julieth', 'Echeverry', 'Medina', '', 'FEMENINO', ''),
+(31, 'usuario', 12343, 'pruebas', 'pruebas', 'pruebas', 'askdj', '', 'MASCULINO', ''),
+(32, 'usuario', 20484652, 'maria', 'margarita', 'cifuentes', 'lopez', '', 'FEMENINO', ''),
+(33, 'vigilante', 1018496743, 'Juan', 'pablo', 'diaz', 'rodriguez', '1018496743', 'MASCULINO', '2019-11-15'),
+(34, '', 10000, 'miguel', 'eduardo', 'perez', 'hernandez', '', 'MASCULINO', '2019-11-15');
 
 -- --------------------------------------------------------
 
@@ -122,7 +124,9 @@ INSERT INTO `usuario_datos` (`id`, `tipo`, `usuario_id`, `dato`, `color`) VALUES
 (16, 'BICICLETAS', 1, '12312', 'VERDE'),
 (18, 'TELEFONO', 1, '3002782284', ''),
 (19, 'EMAIL', 1, 'andresayac@gmail.com', ''),
-(20, 'BICICLETAS', 32, '7123', 'VERDE');
+(20, 'BICICLETAS', 32, '7123', 'VERDE'),
+(21, 'DIRECCION', 33, 'kr 3 4-60', ''),
+(22, 'BICICLETAS', 33, '555555554', 'verde');
 
 --
 -- Índices para tablas volcadas
@@ -172,13 +176,13 @@ ALTER TABLE `parqueos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_datos`
 --
 ALTER TABLE `usuario_datos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -19,9 +19,9 @@ if ($result->num_rows > 0) {
 }
 
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $hoy = date("Y-m-d H:i:s");
-
+ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+           
+    $hoy = date("Y-m-d H:i:s");
 
             $sql = 'INSERT INTO  `parqueos` (`id`, `usuario_id`, `horaingreso`, `horasalida`, `duracion`) VALUES (NULL, "'. $_SESSION['ingreso_id'].'", "'. $hoy .'","","")';
             if ($conexion->query($sql) === TRUE) {

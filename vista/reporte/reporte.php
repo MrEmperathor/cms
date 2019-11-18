@@ -3,9 +3,9 @@
 include "controlador/app.php";
 require('modelo/conexion.php');
 	
-$desde1	 = "00/00/0000";
-$hasta1  = "00/00/0000";
-
+$desde1	 = "11/18/2019";
+$hasta1  = "11/18/2019";
+$datos = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
             $desde1 =  str_replace ( '/' , '-' , $_POST["desde"] );
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h3>Usuarios Que han utilizado el parqueadero hasta (<?php echo date("Y-m-d"); ?>)</h3>
         <form class="form-inline" method="post">
             <h5>Desde: </h5>
-        <input id="datepicker" name="desde" width="276" value="<?php echo $desde1 ?>" readonly />
+        <input id="datepicker" name="desde" width="276" value="<?php echo $desde1 ?>"  readonly/>
             <script>
                 $('#datepicker').datepicker({
                     uiLibrary: 'bootstrap4'

@@ -2,18 +2,22 @@
   require('modelo/conexion.php');
 $show = TRUE;
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-     $_POST['rol'];
+    if($_SESSION['cargo']==="vigilante"){
+      $_POST['rol'] =1  ;  
+      $contrasena = null;
+    
     if($_POST['rol']==1){
       $usuario = "usuario";
 
     }elseif($_POST['rol']==2){
       $usuario = "vigilante";
+      
     }
     elseif($_POST['rol']==3){
       $usuario = "administrador";
     }
-     
-     $sql = "INSERT INTO `usuarios` (`id`, `rol`, `documento`, `nombre`, `nombre2`, `apellido`, `apellido2`, `contrasena`, `genero`, `fecha_registro`) VALUES (NULL, '". $usuario ."', '". $_POST["documento"] ."', '".$_POST["primernombre"]."', '".$_POST["segundonombre"]."', '".$_POST["primerapellido"]."', '".$_POST["segundoapellido"]."', '". $_POST["contrasena"] ."', '".$_POST["genero"]."', '". date("Y-m-d") ."')";
+  }  
+     $sql = "INSERT INTO `usuarios` (`rol`, `documento`, `nombre`, `nombre2`, `apellido`, `apellido2`, `contrasena`, `genero`, `fecha_registro`) VALUES ( '". $usuario ."', '". $_POST["documento"] ."', '".$_POST["primernombre"]."', '".$_POST["segundonombre"]."', '".$_POST["primerapellido"]."', '".$_POST["segundoapellido"]."', '". $_POST["contrasena"] ."', '".$_POST["genero"]."', '". date("Y-m-d") ."')";
    
     if ($conexion->query($sql) === TRUE) {
       echo '<script>
@@ -55,7 +59,7 @@ $show = TRUE;
                   </div>
                   <div class="form-group">
                   <label>Contraseña </label>
-                  <input type="number" class="form-control" name="contrasena" placeholder="Contraseña" require>
+                  <input type="number" class="form-control" name="contrasena" placeholder="Contraseña">
                 </div> 
                   
                   

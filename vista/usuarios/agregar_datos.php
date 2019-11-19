@@ -51,7 +51,6 @@ if ($result->num_rows > 0) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
    
-    
     $sql= 'UPDATE usuarios SET nombre = "'.$_POST["nombre"].'", nombre2 = "'.$_POST["nombre2"].'", apellido = "'.$_POST["apellido"].'", apellido2= "'.$_POST["apellido2"].'" WHERE documento = "'.$cliente[0]['documento'].'"';
     if ($conexion->query($sql) === TRUE) {
 
@@ -59,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
             $color=TRUE;
         }
 
-        $sql = "INSERT INTO `usuario_datos` (`id`, `tipo`, `usuario_id`, `dato`,  `color`) VALUES (NULL, '" . $_POST["tipo"] . "', '" . $_POST["usuario_id"] . "', '" . $_POST["dato"] . "','" . $_POST["color"] . "')";
+        echo $sql = "INSERT INTO `usuario_datos` (`id`, `tipo`, `usuario_id`, `dato`,  `color`) VALUES (NULL, '" . $_POST["tipo"] . "', '" . $_POST["usuario_id"] . "', '" . $_POST["dato"] . "','" . $_POST["color"] . "');";
         if ($conexion->query($sql) === TRUE) {
             echo '<script>
                 alert("Usuario Registrado Complete Datos Adicionales");
@@ -67,11 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
             </script>';
                     die();
         } else {
-            echo "Ocurrio un error, por favor vuelve a intentarlo";
+            echo "Ocurrio un error, por favor vuelve a intentarlo 1";
         }
 
     }else {
-            echo "Ocurrio un error, por favor vuelve a intentarlo";
+            echo "Ocurrio un error, por favor vuelve a intentarlo 2";
     }
 }
 
